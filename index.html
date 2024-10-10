@@ -1,0 +1,130 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhash Shrestha - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Abhash Shrestha</h1>
+            <p>MSc Computer Science, Software Engineer</p>
+            <a href="mailto:abhashsth@gmail.com" class="btn">Contact Me</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                I am an MSc Computer Science student and experienced software engineer currently researching AI biases and seeking new industrial opportunities. I am skilled in Python libraries such as TensorFlow, Keras, PyTorch, and more.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <ul>
+                <li>Python (TensorFlow, PyTorch, Scikit-learn)</li>
+                <li>.NET Core, ASP.NET, C#, VB.NET</li>
+                <li>Machine Learning, Data Analysis, Data Visualization</li>
+                <li>PostgreSQL, MsSQL, Database Management</li>
+                <li>Source Tree, Git, TortoiseGit</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Research Intern - CAIR-Nepal (Feb 2024 - Present)</h3>
+                <p>Investigating AI biases and exploring Knowledge Graphs to mitigate them.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Software Engineer - Fintech Solutions (Feb 2023 - July 2023)</h3>
+                <p>Developed payment gateway APIs and worked on database optimization using .NET Core.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <p>MSc Computer Science, University of Southampton (2023-2024)</p>
+            <p>Bachelor of Engineering, Computer Science and Engineering, SRM University (2016-2020)</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Connect with me: <a href="https://linkedin.com/in/abhash-shrestha-13766917a" target="_blank">LinkedIn</a></p>
+        </div>
+    </footer>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhash Shrestha - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Abhash Shrestha</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Abhash Shrestha</h2>
+                <p>
+                    Abhash Shrestha holds an MSc in Computer Science with a specialization in Machine Learning and Data Science. His master's dissertation focused on the optimization of time series algorithms, where he produced publication-worthy results by implementing novel methods to enhance both the speed and accuracy of the algorithms. These algorithms are featured in the <a href="https://github.com/Abhash297/tsml-eval" target="_blank">TSML-Eval</a> and <a href="https://www.aeon-toolkit.org/en/stable/" target="_blank">AEON</a> toolkits. His work demonstrated technical prowess and contributed to advancements in the field, reflecting his deep expertise in algorithm development and AI.
+                </p>
+                 <p>
+                 As a software engineer, he has played a key role in deploying large-scale, high-impact software solutions, optimizing system performance, and designing robust APIs.
+                </p>
+
+                <p>
+                Currently affiliated with CAIR, Nepal, his research explores ethical AI practices, particularly in knowledge graphs and fairness in AI. Moving forward, Abhash is driven by a vision to lead cutting-edge AI research teams, shaping the future of ethical and sustainable AI technology in real-world applications..</p>
+            </p>
+            </div>
+            <div class="hero-image">
+                <img src="profile.jpg" style="width:400px" alt="Abhash Shrestha">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Abhash Shrestha</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                window.location.href = sectionId + '.html';
+            });
+        });
+    </script>
+</body>
+</html>
