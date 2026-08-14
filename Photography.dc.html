@@ -43,7 +43,7 @@
       <sc-for list="{{ columns }}" as="col" hint-placeholder-count="3">
         <div class="masonry-col" style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
           <sc-for list="{{ col }}" as="p" hint-placeholder-count="6">
-            <img src="{{ p }}" alt="Photograph by Abhash Shrestha" onClick="{{ openPhoto }}" style="width: 100%; display: block; border-radius: 2px; cursor: zoom-in;">
+            <img data-idx="{{ p.idx }}" src="{{ p.thumb }}" alt="Photograph by Abhash Shrestha" onClick="{{ openPhoto }}" loading="lazy" decoding="async" style="width: 100%; display: block; border-radius: 2px; cursor: zoom-in;">
           </sc-for>
         </div>
       </sc-for>
@@ -66,9 +66,10 @@ class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.photos = ['./assets/photo1.jpg', './assets/photo2.jpg', './assets/photo3.jpg', './assets/photo4.jpg', './assets/photo5.jpg', './assets/photo6.jpg', './assets/photo7.jpg', './assets/photo8.jpg', './assets/photo9.jpg', './assets/photo10.jpg', './assets/photo11.jpg', './assets/photo12.jpg', './assets/photo13.jpg', './assets/photo14.jpg', './assets/photo15.jpg', './assets/photo16.jpg', './assets/photo17.jpg'];
+    this.thumbs = this.photos.map((p) => p.replace('/assets/', '/assets/thumbs/'));
     this.state = { selectedIndex: null };
     this.openPhoto = (e) => {
-      const idx = this.photos.indexOf(e.target.getAttribute('src'));
+      const idx = Number(e.target.getAttribute('data-idx'));
       this.setState({ selectedIndex: idx });
     };
     this.closePhoto = () => this.setState({ selectedIndex: null });
@@ -83,7 +84,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const columns = [[], [], []];
-    this.photos.forEach((p, i) => columns[i % 3].push(p));
+    this.photos.forEach((p, i) => columns[i % 3].push({ idx: i, thumb: this.thumbs[i] }));
     const selected = this.state.selectedIndex == null ? null : this.photos[this.state.selectedIndex];
     return { columns, selected, openPhoto: this.openPhoto, closePhoto: this.closePhoto, prevPhoto: this.prevPhoto, nextPhoto: this.nextPhoto };
   }
