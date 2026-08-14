@@ -14,23 +14,34 @@
     body { margin: 0; background: oklch(0.98 0.006 90); }
     a { color: oklch(0.42 0.14 265); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    @media (max-width: 700px) {
+      .nav-bar { padding: 14px 20px !important; }
+      .sec { padding: 40px 20px !important; }
+      .sec h1 { font-size: 28px !important; }
+      .masonry { gap: 8px !important; }
+      .masonry-col { gap: 8px !important; }
+      .lightbox-nav { font-size: 30px !important; padding: 6px !important; }
+      .lightbox-nav.prev { left: 4px !important; }
+      .lightbox-nav.next { right: 4px !important; }
+      .lightbox { padding: 16px !important; }
+    }
   </style>
 </helmet>
 <div style="font-family: 'Work Sans', sans-serif; color: oklch(0.22 0.01 90); background: oklch(0.98 0.006 90); line-height: 1.6; min-height: 100vh;">
 
-  <div style="position: sticky; top: 0; z-index: 10; background: oklch(0.98 0.006 90 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid oklch(0.88 0.008 90); display: flex; align-items: center; justify-content: space-between; padding: 18px 48px;">
+  <div class="nav-bar" style="position: sticky; top: 0; z-index: 10; background: oklch(0.98 0.006 90 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid oklch(0.88 0.008 90); display: flex; align-items: center; justify-content: space-between; padding: 18px 48px;">
     <a href="./index.html" style="font-family: 'Source Serif 4', serif; font-size: 19px; font-weight: 600; color: oklch(0.22 0.01 90);">Abhash Shrestha</a>
     <div style="display: flex; gap: 28px; font-size: 14px;">
       <a href="./index.html" style="color: oklch(0.22 0.01 90);">← Back to portfolio</a>
     </div>
   </div>
 
-  <div style="max-width: 1080px; margin: 0 auto; padding: 64px 48px;">
+  <div class="sec" style="max-width: 1080px; margin: 0 auto; padding: 64px 48px;">
     <h1 style="font-family: 'Source Serif 4', serif; font-size: 40px; font-weight: 600; margin: 0 0 12px;">Photography</h1>
     <p style="font-size: 16px; color: oklch(0.45 0.01 90); margin: 0 0 40px; max-width: 560px;">Frames from travels around Nepal, the UK, and beyond.</p>
-    <div style="display: flex; gap: 14px;">
+    <div class="masonry" style="display: flex; gap: 14px;">
       <sc-for list="{{ columns }}" as="col" hint-placeholder-count="3">
-        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+        <div class="masonry-col" style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
           <sc-for list="{{ col }}" as="p" hint-placeholder-count="6">
             <img src="{{ p }}" alt="Photograph by Abhash Shrestha" onClick="{{ openPhoto }}" style="width: 100%; display: block; border-radius: 2px; cursor: zoom-in;">
           </sc-for>
@@ -40,10 +51,10 @@
   </div>
 
   <sc-if value="{{ selected }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ closePhoto }}" style="position: fixed; inset: 0; background: oklch(0.1 0.005 90 / 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; cursor: zoom-out; padding: 40px;">
-      <button onClick="{{ prevPhoto }}" aria-label="Previous photo" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; color: oklch(0.95 0.006 90); font-size: 44px; line-height: 1; cursor: pointer; padding: 12px; z-index: 101;">‹</button>
+    <div class="lightbox" onClick="{{ closePhoto }}" style="position: fixed; inset: 0; background: oklch(0.1 0.005 90 / 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; cursor: zoom-out; padding: 40px;">
+      <button class="lightbox-nav prev" onClick="{{ prevPhoto }}" aria-label="Previous photo" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; color: oklch(0.95 0.006 90); font-size: 44px; line-height: 1; cursor: pointer; padding: 12px; z-index: 101;">‹</button>
       <img src="{{ selected }}" alt="Full-size photograph" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 2px;">
-      <button onClick="{{ nextPhoto }}" aria-label="Next photo" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; color: oklch(0.95 0.006 90); font-size: 44px; line-height: 1; cursor: pointer; padding: 12px; z-index: 101;">›</button>
+      <button class="lightbox-nav next" onClick="{{ nextPhoto }}" aria-label="Next photo" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; color: oklch(0.95 0.006 90); font-size: 44px; line-height: 1; cursor: pointer; padding: 12px; z-index: 101;">›</button>
     </div>
   </sc-if>
 
