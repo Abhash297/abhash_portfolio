@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.98 0.006 90); }
+    a { color: {{ accent }}; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ::selection { background: {{ accentSoft }}; }
+  </style>
+</helmet>
+<div style="font-family: 'Work Sans', sans-serif; color: oklch(0.22 0.01 90); background: oklch(0.98 0.006 90); line-height: 1.6;">
+
+  <!-- NAV -->
+  <div style="position: sticky; top: 0; z-index: 10; background: oklch(0.98 0.006 90 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid oklch(0.88 0.008 90); display: flex; align-items: center; justify-content: space-between; padding: 18px 48px;">
+    <a href="#top" style="font-family: 'Source Serif 4', serif; font-size: 19px; font-weight: 600; color: oklch(0.22 0.01 90);">Abhash Shrestha</a>
+    <div style="display: flex; gap: 28px; font-size: 14px;">
+      <a href="#publications" style="color: oklch(0.22 0.01 90);">Publications</a>
+      <a href="#experience" style="color: oklch(0.22 0.01 90);">Experience</a>
+      <a href="#projects" style="color: oklch(0.22 0.01 90);">Projects</a>
+      <a href="./Photography.dc.html" style="color: oklch(0.22 0.01 90);">Photos</a>
+      <a href="#contact" style="color: oklch(0.22 0.01 90);">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="top" style="max-width: 880px; margin: 0 auto; padding: 88px 48px 64px; display: flex; gap: 48px; align-items: flex-start; justify-content: space-between;">
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 18px; font-weight: 500;">AI Researcher</div>
+      <h1 style="font-family: 'Source Serif 4', serif; font-size: 52px; font-weight: 600; margin: 0 0 20px; line-height: 1.1;">Abhash Shrestha</h1>
+      <p style="font-size: 19px; color: oklch(0.4 0.01 90); max-width: 680px; margin: 0 0 28px;">Working at the intersection of Large Language Models, Knowledge Graphs, and Trustworthy AI — focused on fairness, retrieval-augmented reasoning, and agentic AI systems.</p>
+      <p style="font-size: 16px; color: oklch(0.45 0.01 90); max-width: 700px; margin: 0 0 36px;">First author on all current research outputs, including a manuscript on structural concentration in AI bias research targeting <em>ACM FAccT 2027</em>, and a book chapter on knowledge-graph-based LLM bias mitigation in production with Elsevier.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 14px;">
+        <a href="mailto:abhashsth@gmail.com" style="padding: 10px 18px; background: {{ accent }}; color: oklch(0.98 0.006 90); border-radius: 3px;">abhashsth@gmail.com</a>
+        <a href="https://github.com/Abhash297" style="padding: 10px 18px; border: 1px solid oklch(0.8 0.008 90); border-radius: 3px; color: oklch(0.22 0.01 90);">GitHub ↗</a>
+        <a href="https://arxiv.org/abs/2607.05574" style="padding: 10px 18px; border: 1px solid oklch(0.8 0.008 90); border-radius: 3px; color: oklch(0.22 0.01 90);">Latest preprint ↗</a>
+        <span style="color: oklch(0.55 0.01 90); margin-left: 4px;">Kathmandu, Nepal</span>
+      </div>
+    </div>
+    <div style="width: 280px; height: 280px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid oklch(0.88 0.008 90);">
+      <img src="./assets/profile.jpg" alt="Abhash Shrestha" style="width: 100%; height: 100%; object-fit: cover; object-position: 100% 20%; transform: scale(1.7); transform-origin: 100% 20%;">
+    </div>
+  </div>
+
+  <!-- RESEARCH INTERESTS -->
+  <div style="max-width: 880px; margin: 0 auto; padding: 0 48px 64px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <sc-for list="{{ interests }}" as="tag" hint-placeholder-count="8">
+        <span style="font-size: 13px; padding: 7px 14px; border: 1px solid oklch(0.85 0.008 90); border-radius: 20px; color: oklch(0.4 0.01 90);">{{ tag }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div id="publications" style="border-top: 1px solid oklch(0.88 0.008 90); background: oklch(0.965 0.006 90);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 72px 48px;">
+      <h2 style="font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 600; margin: 0 0 40px;">Publications</h2>
+      <sc-for list="{{ pubGroups }}" as="group" hint-placeholder-count="3">
+        <div style="margin-bottom: 40px;">
+          <div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: {{ accent }}; font-weight: 500; margin-bottom: 16px;">{{ group.label }}</div>
+          <sc-for list="{{ group.items }}" as="pub" hint-placeholder-count="2">
+            <div style="padding: 18px 0; border-top: 1px solid oklch(0.88 0.008 90);">
+              <div style="font-size: 17px; font-weight: 500; margin-bottom: 6px;">{{ pub.title }}</div>
+              <div style="font-size: 14px; color: oklch(0.45 0.01 90); margin-bottom: 6px;">{{ pub.venue }}</div>
+              <div style="font-size: 13px; color: oklch(0.55 0.01 90);">{{ pub.authors }}</div>
+              <sc-if value="{{ pub.link }}" hint-placeholder-val="{{ false }}">
+                <a href="{{ pub.link }}" style="font-size: 13px; display: inline-block; margin-top: 8px;">{{ pub.linkLabel }} ↗</a>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience" style="max-width: 880px; margin: 0 auto; padding: 72px 48px;">
+    <h2 style="font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 600; margin: 0 0 40px;">Research &amp; Industrial Experience</h2>
+    <sc-for list="{{ experience }}" as="job" hint-placeholder-count="4">
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 28px 0; border-top: 1px solid oklch(0.88 0.008 90);">
+        <div>
+          <div style="font-size: 13px; color: oklch(0.55 0.01 90);">{{ job.dates }}</div>
+          <div style="font-size: 13px; color: {{ accent }}; margin-top: 4px;">{{ job.place }}</div>
+        </div>
+        <div>
+          <div style="font-size: 18px; font-weight: 500; font-family: 'Source Serif 4', serif; margin-bottom: 12px;">{{ job.role }}</div>
+          <sc-for list="{{ job.bullets }}" as="b" hint-placeholder-count="2">
+            <div style="font-size: 15px; color: oklch(0.35 0.01 90); margin-bottom: 8px; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: {{ accent }};">—</span>{{ b }}
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- PROJECTS / OPEN SCIENCE -->
+  <div id="projects" style="border-top: 1px solid oklch(0.88 0.008 90); background: oklch(0.965 0.006 90);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 72px 48px;">
+      <h2 style="font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 600; margin: 0 0 12px;">Open Science &amp; Projects</h2>
+      <p style="font-size: 15px; color: oklch(0.45 0.01 90); margin: 0 0 36px;">Public research artifacts and independent projects.</p>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+        <sc-for list="{{ outputs }}" as="o" hint-placeholder-count="6">
+          <a href="{{ o.link }}" style="display: block; padding: 22px; background: oklch(0.98 0.006 90); border: 1px solid oklch(0.88 0.008 90); border-radius: 4px; color: oklch(0.22 0.01 90);">
+            <div style="font-size: 16px; font-weight: 500; margin-bottom: 6px; font-family: 'Source Serif 4', serif;">{{ o.title }} ↗</div>
+            <div style="font-size: 14px; color: oklch(0.45 0.01 90);">{{ o.desc }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div style="max-width: 880px; margin: 0 auto; padding: 72px 48px;">
+    <h2 style="font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 600; margin: 0 0 36px;">Skills</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;">
+      <sc-for list="{{ skills }}" as="cat" hint-placeholder-count="6">
+        <div>
+          <div style="font-size: 14px; font-weight: 600; color: {{ accent }}; margin-bottom: 8px;">{{ cat.label }}</div>
+          <div style="font-size: 14px; color: oklch(0.4 0.01 90);">{{ cat.items }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div style="border-top: 1px solid oklch(0.88 0.008 90);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 72px 48px;">
+      <h2 style="font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 600; margin: 0 0 36px;">Education</h2>
+      <sc-for list="{{ education }}" as="ed" hint-placeholder-count="3">
+        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid oklch(0.88 0.008 90);">
+          <div style="font-size: 13px; color: oklch(0.55 0.01 90);">{{ ed.dates }}</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 500;">{{ ed.school }}</div>
+            <div style="font-size: 14px; color: oklch(0.45 0.01 90); margin-top: 4px;">{{ ed.degree }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- CONTACT / FOOTER -->
+  <div id="contact" style="background: oklch(0.22 0.01 90); color: oklch(0.95 0.006 90);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 72px 48px;">
+      <h2 style="font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 600; margin: 0 0 16px; color: oklch(0.98 0.006 90);">Get in touch</h2>
+      <p style="font-size: 16px; color: oklch(0.75 0.01 90); max-width: 500px; margin: 0 0 28px;">Open to research collaborations, PhD opportunities, and conversations on fairness, knowledge graphs, and LLMs.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; margin-bottom: 40px;">
+        <a href="mailto:abhashsth@gmail.com" style="color: {{ accentLight }};">abhashsth@gmail.com</a>
+        <a href="https://github.com/Abhash297" style="color: {{ accentLight }};">github.com/Abhash297</a>
+        <sc-if value="{{ showPhone }}" hint-placeholder-val="{{ false }}">
+          <span style="color: oklch(0.75 0.01 90);">{{ phone }}</span>
+        </sc-if>
+      </div>
+      <div style="font-size: 13px; color: oklch(0.55 0.01 90); border-top: 1px solid oklch(0.32 0.01 90); padding-top: 20px;">© 2026 Abhash Shrestha · Kathmandu, Nepal</div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;oklch(0.42 0.14 265)&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;oklch(0.42 0.14 265)&quot;, &quot;oklch(0.45 0.13 25)&quot;, &quot;oklch(0.45 0.12 150)&quot;, &quot;oklch(0.4 0.02 90)&quot;]}, &quot;showPhone&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accentColor ?? 'oklch(0.42 0.14 265)';
+    return {
+      accent,
+      accentSoft: 'oklch(0.42 0.14 265 / 0.18)',
+      accentLight: 'oklch(0.72 0.1 265)',
+      showPhone: this.props.showPhone ?? false,
+      phone: '+977-9803412462',
+      interests: ['Large Language Models', 'Knowledge Graphs', 'Trustworthy & Fair AI', 'Agentic AI', 'Retrieval-Augmented Generation', 'Neuro-Symbolic AI', 'Explainable AI', 'Natural Language Processing'],
+      pubGroups: [
+        {
+          label: 'Accepted Book Chapters',
+          items: [
+            { title: 'Integrating Knowledge Graphs and Large Language Models for Bias Mitigation', venue: 'Chapter in Knowledge Graphs and Large Language Models: Current Approaches, Challenges, and Future Directions, Elsevier (ISBN 978-0-443-45244-4) — In production', authors: 'Shrestha, A., Chhetri, T. R. — First author', link: 'https://shop.elsevier.com/books/knowledge-graphs-and-large-language-models/tiwari/978-0-443-45244-4', linkLabel: 'View book' }
+          ]
+        },
+        {
+          label: 'Journal Submissions (Preprint Available)',
+          items: [
+            { title: 'Whose Fairness? Structural Concentration in AI Bias Research', venue: 'ACM FAccT 2027 — Targeted submission, Nov 2026', authors: 'Shrestha, A., Gautam, S., Sapkota, A., Tiwari, S., Chhetri, T. R. — First author', link: 'https://arxiv.org/abs/2607.05574', linkLabel: 'Preprint (arXiv:2607.05574)' }
+          ]
+        },
+        {
+          label: 'Manuscripts in Preparation',
+          items: [
+            { title: 'An Analysis of GDPR Tools and Projects for Data Sharing: Challenges and Impact', venue: 'In preparation; journal submission planned', authors: 'Shrestha, A., Chhetri, T. R., Yumusak, S. — First author', link: null, linkLabel: '' },
+            { title: 'Quantitative Study of AI Technology Acceptance and AI Literacy', venue: 'Technology Acceptance Model — In preparation', authors: 'Shrestha, A., Chhetri, T. R., Gautam, S. — First author', link: null, linkLabel: '' }
+          ]
+        }
+      ],
+      experience: [
+        {
+          dates: 'Jan 2026 – Apr 2026', place: 'Inductiv AI Labs, Singapore', role: 'AI Engineer — Research and Development',
+          bullets: [
+            'Designed an agentic AI orchestration layer coordinating RAG retrieval, intent classification, ontology-based reasoning, and human handoff.',
+            'Built a hybrid retrieval pipeline (dense embeddings + BM25 re-ranking), evaluated with Deepeval on faithfulness, grounding, and latency.',
+            'Integrated a domain ontology and RDF knowledge graph with a 3-step NL-to-SPARQL pipeline for explainable query answering.',
+            'Implemented multilingual support (Burmese/English, extensible to 50+ languages) with provider failover.'
+          ]
+        },
+        {
+          dates: 'Feb 2024 – Present', place: 'CAIR-Nepal', role: 'Researcher',
+          bullets: [
+            'Proposed and evaluated a hybrid KG-RAG framework steering LLM outputs away from social stereotypes; findings appearing as an Elsevier book chapter.',
+            'Led a bibliometric, semantic-clustering, and structural analysis of 692 publications, showing AI fairness research is geographically and institutionally concentrated (targeting ACM FAccT 2027).',
+            'Built and deployed BiasAtlas (biasatlas.cair-nepal.org), an interactive React + Next.js dashboard for exploring the AI bias-mitigation research landscape.',
+            'First-authored a structured analysis of EU-funded GDPR data-sharing projects and compliance tools.',
+            'Designed and conducted a quantitative TAM study of AI technology acceptance and literacy in developing nations.'
+          ]
+        },
+        {
+          dates: '2023 – 2024', place: 'University of Southampton', role: 'MSc Dissertation — Shapelet Classifier Optimization',
+          bullets: [
+            'Benchmarked five statistical quality measures for shapelet-based time-series classification, relevant to real-time ECG/EEG, finance, and IoT applications.',
+            'Contribution integrated into tsml-eval. Advisor: Prof. Dr. Anthony Bagnall.'
+          ]
+        },
+        {
+          dates: 'Feb 2023 – Jul 2023', place: 'Kathmandu, Nepal', role: 'Software Engineer — Fintech Solutions Pvt. Ltd.',
+          bullets: [
+            'Developed secure, scalable APIs in C# and .NET Core 7 following MVC/MVVM patterns to improve modularity and maintainability.',
+            'Refactored legacy logic and tuned SQL queries and LINQ expressions to improve performance across transaction modules.',
+            'Used Git, Postman, TortoiseGit, and SourceTree for version control and API testing workflows.'
+          ]
+        },
+        {
+          dates: 'Nov 2021 – Jul 2022', place: 'Kathmandu, Nepal', role: 'Software Engineer — Vanilla Transtechnor',
+          bullets: [
+            'Engineered and deployed client-facing web application features using ASP.NET and C#.',
+            'Refined stored procedures and indexing strategies in MS SQL to improve query response times.',
+            'Conducted regression and stress testing and produced detailed bug reports to ensure API stability and usability.'
+          ]
+        },
+        {
+          dates: 'Jul 2020 – Jul 2021', place: 'Kathmandu, Nepal', role: 'Software Engineer — Smartech Solutions',
+          bullets: [
+            'Contributed to a Smart Road Design desktop tool (VB.NET, Aspose libraries) for civil-engineering modeling and simulation.',
+            'Helped refine core design logic and improve UX for real-time drawing and simulation interfaces.'
+          ]
+        }
+      ],
+      outputs: [
+        { title: 'MSc Dissertation', desc: 'Benchmarking statistical quality measures for shapelet-based time-series classification, University of Southampton.', link: 'https://doi.org/10.5281/zenodo.21253246' },
+        { title: 'BiasAtlas', desc: 'Interactive research atlas of AI bias/fairness literature — 692 papers across five thematic domains.', link: 'https://biasatlas.cair-nepal.org' },
+        { title: 'AI Bias Research Landscape Dataset', desc: 'Bibliographic and citation metadata for 692 publications, on Hugging Face.', link: 'https://huggingface.co' },
+        { title: 'SABRE-KG', desc: 'Code for the KG-RAG bias-mitigation pipeline.', link: 'https://github.com/Abhash297' },
+        { title: 'Bias Research Dashboard', desc: 'Source repository for the BiasAtlas dashboard.', link: 'https://github.com/Abhash297' },
+        { title: 'GPT-2 Instruction Tuning with LoRA', desc: 'Full fine-tuning vs. LoRA adaptation on GPT-2 (124M) for instruction tuning.', link: 'https://github.com/Abhash297' },
+        { title: 'Deep Learning Reproducibility (COMP6258)', desc: 'Reproduced shape vs. texture bias experiments in CNNs using PyTorch.', link: 'https://github.com/Abhash297' }
+      ],
+      skills: [
+        { label: 'AI & ML', items: 'LLMs, Deep Learning, RAG Systems, RAG Evaluation, Agentic AI, Prompt Engineering, Fairness-Aware AI, Computer Vision, Multilingual NLP, Financial Forecasting' },
+        { label: 'Knowledge Graphs', items: 'RDF, OWL, SPARQL, Ontology Engineering, LinkML, Apache Jena, RDFlib' },
+        { label: 'Frameworks & Tools', items: 'PyTorch, TensorFlow, Scikit-learn, LangChain, FastAPI, Pydantic AI, Sentence-Transformers, Deepeval, Ollama' },
+        { label: 'Backend & APIs', items: 'API Design, System Architecture Design, .NET Core, ASP.NET, MS SQL, LINQ, Redis, SQLite, Caching, Performance Optimization' },
+        { label: 'Languages', items: 'Python, C#, Java, C++, VB.NET, JavaScript/TypeScript' },
+        { label: 'Data & Statistics', items: 'Statistical Testing, Time Series Analysis, Vector Databases, ChromaDB, NumPy, Pandas, Matplotlib' },
+        { label: 'Infrastructure', items: 'Docker, CI/CD, Git, Postman, TortoiseGit, SourceTree, Deployment' }
+      ],
+      education: [
+        { dates: '2023 – 2024', school: 'University of Southampton, United Kingdom', degree: 'MSc Computer Science (Merit, GPA 3.3–3.5/4.0)' },
+        { dates: '2016 – 2020', school: 'SRM University, Chennai, India', degree: 'B.E. Computer Science and Engineering (84%)' },
+        { dates: '2013 – 2015', school: "St. Xavier's College, Kathmandu, Nepal", degree: 'GCE A-Levels' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

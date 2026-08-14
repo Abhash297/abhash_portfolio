@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.98 0.006 90); }
+    a { color: oklch(0.42 0.14 265); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</helmet>
+<div style="font-family: 'Work Sans', sans-serif; color: oklch(0.22 0.01 90); background: oklch(0.98 0.006 90); line-height: 1.6; min-height: 100vh;">
+
+  <div style="position: sticky; top: 0; z-index: 10; background: oklch(0.98 0.006 90 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid oklch(0.88 0.008 90); display: flex; align-items: center; justify-content: space-between; padding: 18px 48px;">
+    <a href="./Researcher Portfolio.dc.html" style="font-family: 'Source Serif 4', serif; font-size: 19px; font-weight: 600; color: oklch(0.22 0.01 90);">Abhash Shrestha</a>
+    <div style="display: flex; gap: 28px; font-size: 14px;">
+      <a href="./Researcher Portfolio.dc.html" style="color: oklch(0.22 0.01 90);">← Back to portfolio</a>
+    </div>
+  </div>
+
+  <div style="max-width: 1080px; margin: 0 auto; padding: 64px 48px;">
+    <h1 style="font-family: 'Source Serif 4', serif; font-size: 40px; font-weight: 600; margin: 0 0 12px;">Photography</h1>
+    <p style="font-size: 16px; color: oklch(0.45 0.01 90); margin: 0 0 40px; max-width: 560px;">Frames from travels around Nepal, the UK, and beyond.</p>
+    <div style="display: flex; gap: 14px;">
+      <sc-for list="{{ columns }}" as="col" hint-placeholder-count="3">
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+          <sc-for list="{{ col }}" as="p" hint-placeholder-count="6">
+            <img src="{{ p }}" alt="Photograph by Abhash Shrestha" onClick="{{ openPhoto }}" style="width: 100%; display: block; border-radius: 2px; cursor: zoom-in;">
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{ selected }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePhoto }}" style="position: fixed; inset: 0; background: oklch(0.1 0.005 90 / 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; cursor: zoom-out; padding: 40px;">
+      <button onClick="{{ prevPhoto }}" aria-label="Previous photo" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; color: oklch(0.95 0.006 90); font-size: 44px; line-height: 1; cursor: pointer; padding: 12px; z-index: 101;">‹</button>
+      <img src="{{ selected }}" alt="Full-size photograph" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 2px;">
+      <button onClick="{{ nextPhoto }}" aria-label="Next photo" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; color: oklch(0.95 0.006 90); font-size: 44px; line-height: 1; cursor: pointer; padding: 12px; z-index: 101;">›</button>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.photos = ['./assets/photo1.jpg', './assets/photo2.jpg', './assets/photo3.jpg', './assets/photo4.jpg', './assets/photo5.jpg', './assets/photo6.jpg', './assets/photo7.jpg', './assets/photo8.jpg', './assets/photo9.jpg', './assets/photo10.jpg', './assets/photo11.jpg', './assets/photo12.jpg', './assets/photo13.jpg', './assets/photo14.jpg', './assets/photo15.jpg', './assets/photo16.jpg', './assets/photo17.jpg'];
+    this.state = { selectedIndex: null };
+    this.openPhoto = (e) => {
+      const idx = this.photos.indexOf(e.target.getAttribute('src'));
+      this.setState({ selectedIndex: idx });
+    };
+    this.closePhoto = () => this.setState({ selectedIndex: null });
+    this.prevPhoto = (e) => {
+      e.stopPropagation();
+      this.setState((s) => ({ selectedIndex: (s.selectedIndex - 1 + this.photos.length) % this.photos.length }));
+    };
+    this.nextPhoto = (e) => {
+      e.stopPropagation();
+      this.setState((s) => ({ selectedIndex: (s.selectedIndex + 1) % this.photos.length }));
+    };
+  }
+  renderVals() {
+    const columns = [[], [], []];
+    this.photos.forEach((p, i) => columns[i % 3].push(p));
+    const selected = this.state.selectedIndex == null ? null : this.photos[this.state.selectedIndex];
+    return { columns, selected, openPhoto: this.openPhoto, closePhoto: this.closePhoto, prevPhoto: this.prevPhoto, nextPhoto: this.nextPhoto };
+  }
+}
+</script>
+</body>
+</html>
